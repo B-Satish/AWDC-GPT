@@ -1,0 +1,32 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+	int t;
+	vector<bool> prime(1000001,true);
+	prime[0]=false;
+	prime[1]=false;
+	 for (int p=2; p*p<1000001; p++){ 
+        if (prime[p] == true){ 
+            for (int i=p*p; i<1000001; i += p) 
+                prime[i] = false;
+        }
+	}
+    
+    vector<unsigned long long int> preFixSum(1000001);
+    for(int i=1;i<1000001;i++){
+        if(prime[i]){
+            preFixSum[i]=i+preFixSum[i-1];
+        }else{
+            preFixSum[i]=preFixSum[i-1];
+        }
+    }
+    cin>>t;
+	while(t--)
+{
+	    int l,r;
+	    scanf("%d %d",&l,&r);
+	    printf("%llu\n",preFixSum[r]-preFixSum[l-1]);
+	}
+}
