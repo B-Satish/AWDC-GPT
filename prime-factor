@@ -1,0 +1,12 @@
+for i in range(int(input())):
+    num=int(input())
+    prime_factors=set()
+    divisor=2
+    while num/divisor>=1:
+        if num%divisor==0:
+            prime_factors.add(divisor)
+            num=num/divisor
+        else:
+            divisor+=1
+    print(max(prime_factors))
+
